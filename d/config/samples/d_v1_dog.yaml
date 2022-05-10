@@ -1,0 +1,6 @@
+apiVersion: d.y.demo.io/v1
+kind: Dog
+metadata:
+  name: dog-sample
+spec:
+  images: nginx

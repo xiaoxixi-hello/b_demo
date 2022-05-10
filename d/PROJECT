@@ -1,0 +1,16 @@
+domain: y.demo.io
+layout:
+- go.kubebuilder.io/v3
+projectName: d
+repo: github.com/ylinyang/b_demo/d
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: y.demo.io
+  group: d
+  kind: Dog
+  path: github.com/ylinyang/b_demo/d/api/v1
+  version: v1
+version: "3"
