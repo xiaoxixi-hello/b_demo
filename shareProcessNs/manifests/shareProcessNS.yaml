@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: shareprocessns
+  name: shareprocessns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shareprocessns
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: shareprocessns
+    spec:
+      containers:
+        - image: ylinyang/shareprocessns
+          name: shareprocessns
+          resources: {}
+status: {}
