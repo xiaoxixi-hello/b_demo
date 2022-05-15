@@ -5,6 +5,7 @@ metadata:
   labels:
     app: shareprocessns
   name: shareprocessns
+  namespace: kube-system
 spec:
   replicas: 1
   selector:

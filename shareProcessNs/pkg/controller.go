@@ -22,8 +22,8 @@ type Controller struct {
 	clientset kubernetes.Interface
 
 	deploymentLister listersv1.DeploymentLister
-	deploymentSynced cache.InformerSynced
-	workqueue        workqueue.RateLimitingInterface
+	deploymentSynced cache.InformerSynced            // 缓存同步
+	workqueue        workqueue.RateLimitingInterface //初始化队列
 }
 
 func NewController(clientset kubernetes.Interface, deploymentInformer informersv1.DeploymentInformer) *Controller {
@@ -35,6 +35,7 @@ func NewController(clientset kubernetes.Interface, deploymentInformer informersv
 	}
 
 	log.Println("Setting up event handlers")
+	// 添加两个事件处理函数 由于informer将事件变更写入缓存，所有需要先等待缓存信息同步在操作
 	deploymentInformer.Informer().AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc: func(obj interface{}) {
 			log.Println("--------------------------------------add func")
@@ -96,7 +97,6 @@ func (c *Controller) processNextWorkItem() bool {
 		var key string
 		var ok bool
 		if key, ok = obj.(string); !ok {
-			// 不希望该obj重新入队
 			c.workqueue.Forget(obj)
 			utilruntime.HandleError(fmt.Errorf("expected string in workqueue but got %#v", obj))
 			return nil
