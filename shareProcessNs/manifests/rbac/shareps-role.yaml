@@ -1,14 +1,16 @@
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
   creationTimestamp: null
   name: shareps
 rules:
-  - apiGroups:
-      - apps
-    resources:
-      - deployments
-    verbs:
-      - get
-      - update
-      - delete
+- apiGroups:
+    - apps
+  resources:
+    - deployments
+  verbs:
+    - list
+    - watch
+    - create
+    - update
+    - delete

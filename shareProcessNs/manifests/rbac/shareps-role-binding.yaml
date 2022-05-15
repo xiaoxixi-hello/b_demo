@@ -8,6 +8,6 @@ roleRef:
   kind: ClusterRole
   name: shareps
 subjects:
-  - kind: ServiceAccount
-    name: shareps
-    namespace: kube-system
+- kind: ServiceAccount
+  name: shareps
+  namespace: kube-system

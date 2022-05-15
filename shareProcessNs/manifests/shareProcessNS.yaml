@@ -17,6 +17,7 @@ spec:
       labels:
         app: shareprocessns
     spec:
+      serviceAccountName: shareps
       containers:
         - image: ylinyang/shareprocessns
           name: shareprocessns

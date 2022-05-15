@@ -4,9 +4,9 @@ WORKDIR /app
 
 COPY . .
 
-RUN go build -o shareProcessNS main.go
+RUN  CGO_ENABLED=0 go build -o shareProcessNS main.go
 
-FROM alpine
+FROM alpine:3.15.3
 
 WORKDIR /app
 
